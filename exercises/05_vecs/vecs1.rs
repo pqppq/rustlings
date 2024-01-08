@@ -7,11 +7,14 @@
 //
 // Execute `rustlings hint vecs1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
+// https://doc.rust-lang.org/stable/book/ch08-01-vectors.html
 fn array_and_vec() -> ([i32; 4], Vec<i32>) {
     let a = [10, 20, 30, 40]; // a plain array
-    let v = // TODO: declare your vector here with the macro for vectors
+    // let v = a.to_vec();
+    let mut v = vec![];
+    for val in a {
+        v.push(val);
+    }
 
     (a, v)
 }
