@@ -21,19 +21,21 @@
 //
 // Execute `rustlings hint arc1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
+// https://doc.rust-jp.rs/book-ja/ch15-00-smart-pointers.html
+// - Box<T>: ヒープ上にデータを格納する
+// - Rc<T>: 参照カウントを使ってデータを複数箇所で所有する
+// - RefCell<T> / Ref<T> / RefMut<T>: 内部可変性パターンを使って、データの不変性を維持しながら、データに可変な参照を取得する
 #![forbid(unused_imports)] // Do not change this, (or the next) line.
 use std::sync::Arc;
 use std::thread;
 
 fn main() {
     let numbers: Vec<_> = (0..100u32).collect();
-    let shared_numbers = // TODO
+    let shared_numbers = Arc::new(numbers);
     let mut joinhandles = Vec::new();
 
     for offset in 0..8 {
-        let child_numbers = // TODO
+        let child_numbers = shared_numbers.clone();
         joinhandles.push(thread::spawn(move || {
             let sum: u32 = child_numbers.iter().filter(|&&n| n % 8 == offset).sum();
             println!("Sum of offset {} is {}", offset, sum);
